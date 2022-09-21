@@ -1,0 +1,15 @@
+import pandas as pd
+from datetime import datetime,date
+
+hp = pd.read_excel("HospitalDatabase .xlsx", "Patients")
+
+#hp
+hp['dob'] = pd.to_datetime(hp.DateOfBirth)
+hp['dob']
+
+def age(born):
+    today = date.today()
+    return today.year - born.year - ((today.month, 
+                                      today.day) < (born.month, 
+                                                    born.day))
+hp['dob'].apply(lambda x:age(x))
